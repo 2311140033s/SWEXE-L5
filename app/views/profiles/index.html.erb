@@ -1,0 +1,10 @@
+<h2>プロフィール一覧</h2>
+<%= link_to "新規作成", new_profile_path %><br>
+
+<% @profiles.each do |p| %>
+  <p>
+    名前：<%= p.name %> / 年齢：<%= p.age %> / 地域：<%= p.location %><br>
+    自己紹介：<%= p.bio %><br>
+    <%= link_to "編集", edit_profile_path(p) %>
+  </p>
+<% end %>

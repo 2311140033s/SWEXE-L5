@@ -1,0 +1,13 @@
+<h2>ログイン</h2>
+
+<%= form_with url: login_path do %>
+  <p>
+    ユーザーID：<%= text_field_tag :uid %>
+  </p>
+  <p>
+    パスワード：<%= password_field_tag :password %>
+  </p>
+  <%= submit_tag "ログイン" %>
+<% end %>
+
+<p><%= link_to "ユーザ登録はこちら", signup_path %></p>

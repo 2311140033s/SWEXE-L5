@@ -1,0 +1,13 @@
+<h2>ユーザ登録</h2>
+
+<%= form_with url: "/users/create" do %>
+  <p>
+    ユーザーID：<%= text_field_tag :uid %>
+  </p>
+  <p>
+    パスワード：<%= password_field_tag :password %>
+  </p>
+  <%= submit_tag "登録" %>
+<% end %>
+
+<p><%= link_to "ログイン画面へ戻る", login_path %></p>

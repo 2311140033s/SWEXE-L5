@@ -1,0 +1,8 @@
+<h2>新しいプロフィール</h2>
+<%= form_with model: @profile do |f| %>
+  <p>名前：<%= f.text_field :name %></p>
+  <p>年齢：<%= f.number_field :age %></p>
+  <p>地域：<%= f.text_field :location %></p>
+  <p>自己紹介：<%= f.text_area :bio %></p>
+  <%= f.submit "登録" %>
+<% end %>

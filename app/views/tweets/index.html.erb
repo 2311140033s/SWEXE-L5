@@ -1,0 +1,33 @@
+<h2>ツイート一覧</h2>
+
+<% if @user %>
+  <%= form_with url: tweets_path do %>
+    <%= text_field_tag :message %>
+    <%= submit_tag "ツイート" %>
+  <% end %>
+
+  <%= link_to "新規追加", new_tweet_path, data: { turbo: false } %><br>
+  <%= link_to "ログイン", login_path, data: { turbo: false } %><br>
+  <%= link_to "ログアウト", logout_path, data: { turbo_method: :post } %><br>
+  <p>ログイン中UID：<%= @user.uid %></p>
+<% else %>
+  <%= link_to "ログイン", login_path, data: { turbo: false } %><br>
+  <%= link_to "ユーザ登録", signup_path, data: { turbo: false } %><br>
+<% end %>
+
+<hr>
+
+<% @tweets.each do |tweet| %>
+  <p>
+    <%= tweet.message %> 
+    <%= tweet.likes.count %> 
+    <%= link_to "削除", tweet_path(tweet), data: { turbo_method: :delete } %>
+    <% if @user %>
+      <% if tweet.like_users.include?(@user) %>
+        <%= link_to "いいね削除", likes_path(tweet_id: tweet.id), data: { turbo_method: :delete } %>
+      <% else %>
+        <%= link_to "いいね", likes_path(tweet_id: tweet.id), data: { turbo_method: :post } %>
+      <% end %>
+    <% end %>
+  </p>
+<% end %>
